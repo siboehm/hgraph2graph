@@ -16,12 +16,8 @@ import rdkit
 def make_cuda(tensors, device="cuda"):
     tree_tensors, graph_tensors = tensors
     make_tensor = lambda x: x if type(x) is torch.Tensor else torch.tensor(x, device=device)
-    tree_tensors = [make_tensor(x).long() for x in tree_tensors[:-1]] + [
-        tree_tensors[-1]
-    ]
-    graph_tensors = [make_tensor(x).long() for x in graph_tensors[:-1]] + [
-        graph_tensors[-1]
-    ]
+    tree_tensors = [make_tensor(x).long() for x in tree_tensors[:-1]] + [tree_tensors[-1]]
+    graph_tensors = [make_tensor(x).long() for x in graph_tensors[:-1]] + [graph_tensors[-1]]
     return tree_tensors, graph_tensors
 
 
